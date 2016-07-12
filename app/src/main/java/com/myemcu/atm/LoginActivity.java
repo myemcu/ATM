@@ -29,6 +29,13 @@ public class LoginActivity extends AppCompatActivity {
         // 校验帐号密码
         if(uid.equals("老婆") && pwd.equals("520025")) { // 一个预设的帐号，密码
             Toast.makeText(this, "登陆到主界面", Toast.LENGTH_SHORT).show();
+
+            //将"帐号"与"密码"放入Intent对象中
+            getIntent().putExtra("LOGIN_USERID", uid);
+            getIntent().putExtra("LOGON_PASSWD",pwd);
+            //设置本活动返回结果(返回到MainActivity)
+            setResult(RESULT_OK, getIntent());
+
             finish(); // 结束本Avtivity，回退到MainActivity
         }
         else {
