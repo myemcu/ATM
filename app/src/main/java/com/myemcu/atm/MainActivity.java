@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,6 +57,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch(id) {
+            case R.id.action_settings:
+                Toast.makeText(this, "你点的是设置", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.action_help:
+                Toast.makeText(this, "你点的是帮助", Toast.LENGTH_SHORT).show();
+                break;
+
+            default:break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

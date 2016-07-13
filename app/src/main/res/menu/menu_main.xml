@@ -2,12 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--ifRoom是直接在ToolsBar显示文本-->
+    <!--withText是在菜单图标中显示文本-->
+
     <item android:id="@+id/action_settings"
           android:title="设定"
-          app:showAsAction="ifRoom"/>
+          app:showAsAction="withText"/>
 
     <item android:id="@+id/action_help"
-          android:title="帮助"
-          app:showAsAction="ifRoom"/>
+          android:title="Help"
+          app:showAsAction="withText"/>
 
 </menu>
