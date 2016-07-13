@@ -1,3 +1,5 @@
+//使用Lantern测试翻墙提交GitHub，代码不变。
+
 package com.myemcu.atm;
 
 import android.content.Intent;
