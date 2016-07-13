@@ -18,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
         UserId = (EditText) findViewById(R.id.user);
+
+        //帐号读取
         SharedPreferences setting = getSharedPreferences("atm", MODE_PRIVATE);
         UserId.setText(setting.getString(getString(R.string.userid_write), ""));
     }
