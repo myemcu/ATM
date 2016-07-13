@@ -7,7 +7,7 @@
           app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_help"
-          android:title="Help"
+          android:title="帮助"
           app:showAsAction="ifRoom"/>
 
 </menu>
