@@ -1,4 +1,4 @@
-//使用Lantern测试翻墙提交GitHub，代码不变。
+//使用Lantern测试翻墙提交GitHub，代码不变(失败,只能不开翻墙提交)。
 
 package com.myemcu.atm;
 
