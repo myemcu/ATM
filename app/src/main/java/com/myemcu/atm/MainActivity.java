@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,5 +39,23 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    //-加入选单----------------------------------------------------------------------
+    //-Cti+O(在android.app.Activity中找,操作支持多选)
+    //成功登陆后才能看到
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //return super.onCreateOptionsMenu(menu);
+
+        //产生菜单,读取menu的xml
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }
