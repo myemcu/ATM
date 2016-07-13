@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(!logon) { // 若未登陆,则开启登入LoginActivity
             Intent login = new Intent(this, LoginActivity.class);
-            //startActivity(login);
             startActivityForResult(login, FUNC_LOGIN);
         }
     }
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //return super.onCreateOptionsMenu(menu);
 
         //产生菜单,读取menu的xml
         getMenuInflater().inflate(R.menu.menu_main, menu);
