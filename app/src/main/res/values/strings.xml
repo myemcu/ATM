@@ -5,4 +5,6 @@
     <string name="psd">密码</string>
     <string name="login">登入</string>
     <string name="cancel">取消</string>
+
+    <string name="userid_write">帐号存储</string>
 </resources>
