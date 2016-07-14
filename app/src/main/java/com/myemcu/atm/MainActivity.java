@@ -9,11 +9,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //主活动类继承AppCompatActivity并执行AdapterView.OnItemClickListener方法
@@ -24,6 +28,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final int FUNC_LOGIN =1 ; // 登陆界面(LoginActivity)的功能常数
 
     String[] func = {"余额查询","交易明细","最新资讯","投资理财","退出"}; // ListView所用数组
+
+    int[] icons ={
+            R.drawable.func_balance,    // 余额查询
+            R.drawable.func_history,    // 交易明细
+            R.drawable.func_news,       // 最新资讯
+            R.drawable.func_finance,    // 投资理财
+            R.drawable.func_exit        // 退出
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +84,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //-使用网格视图------------------------------------------------------------------------------
 
         GridView grid = (GridView) findViewById(R.id.grid);
-        ArrayAdapter gAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, func);
+
+        //数组适配器
+        //ArrayAdapter gAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, func);
+
+        //更换为自定义的"IconAdapter"适配器
+        IconAdapter gAdapter = new IconAdapter();
         grid.setAdapter(gAdapter);
 
         //设置事件监听(实现接口方法)
@@ -131,12 +148,75 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //ListView与GridView的事件处理方案(与implements AdapterView.OnItemClickListener关联)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        switch(position) {
+        // 作用于ListView与GridView
+        /*switch(position) {
             case 0: Toast.makeText(this, "case 0", Toast.LENGTH_SHORT).show(); break;
             case 1: Toast.makeText(this, "case 1", Toast.LENGTH_SHORT).show(); break;
             case 2: Toast.makeText(this, "case 2", Toast.LENGTH_SHORT).show(); break;
             case 3: Toast.makeText(this, "case 3", Toast.LENGTH_SHORT).show(); break;
             case 4: finish();
+        }*/
+
+        // 仅作用于GridView
+        switch((int)id) {
+            case R.drawable.func_balance:// 余额查询
+                                         Toast.makeText(this, "case 0", Toast.LENGTH_SHORT).show();
+                                         break;
+
+            case R.drawable.func_history:// 交易明细
+                                         Toast.makeText(this, "case 1", Toast.LENGTH_SHORT).show();
+                                         break;
+
+            case R.drawable.func_news:  // 最新资讯
+                                         Toast.makeText(this, "case 2", Toast.LENGTH_SHORT).show();
+                                         break;
+
+            case R.drawable.func_finance:// 投资理财
+                                         Toast.makeText(this, "case 3", Toast.LENGTH_SHORT).show();
+                                         break;
+
+            case R.drawable.func_exit:   finish();  // 退出
+        }
+    }
+
+    //-自定义iconAdapter图标适配器类----------------------------------------------------------------
+    //-使用Alt+Enter->implements methods自动生成相应方法--------------------------------------------
+
+    class IconAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return func.length; // 返回GridView中的项目个数
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return func[position];  // 返回项目字符串
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return icons[position]; // 返回项目的id值
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            View row = convertView;
+
+            if (row == null) {
+
+                row = getLayoutInflater().inflate(R.layout.item_row, null);
+
+                ImageView image = (ImageView) row.findViewById(R.id.item_image);
+                TextView text = (TextView) row.findViewById(R.id.item_text);
+
+                image.setImageResource(icons[position]);
+                text.setText(func[position]);
+
+            }
+
+            return row;
         }
     }
 }

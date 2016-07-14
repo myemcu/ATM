@@ -9,14 +9,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@mipmap/river"
     tools:context="com.myemcu.atm.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10pt"
         android:text="我是主界面..."
         android:textColor="#0000cd"
+        android:textSize="10pt"
         android:id="@+id/textView3"/>
 
 
@@ -33,15 +34,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/list"
         android:layout_below="@+id/notify_spinner"
-
+        android:visibility="gone"
         android:layout_alignParentStart="true"/>
 
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/grid"
-        android:layout_below="@+id/list"
         android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:numColumns="3"/>
 
 </RelativeLayout>
