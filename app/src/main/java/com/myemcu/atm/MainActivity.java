@@ -11,11 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+//主活动类继承AppCompatActivity并执行AdapterView.OnItemClickListener方法
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     boolean logon = false; // 未登陆
 
@@ -40,23 +42,20 @@ public class MainActivity extends AppCompatActivity {
         //C:\Users\Administrator\AppData\Local\Android\sdk\platforms\android-23\data\res\layout
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, func);
         list.setAdapter(adapter);   // 设置id为list的适配器
-
+        list.setOnItemClickListener(this); // 与GridView共用同一个事件处理方法
         //-增加Spinner--------------------------------------------------------------------------
         Spinner notify = (Spinner) findViewById(R.id.notify_spinner); // 获取对象
-
         //若数组存放在Res(资源文件)中,则用这种方法来创建Adapter(即：从资源中创建)。
-        //要进行事件处理就要加Final
+        //要进行事件处理就要加final
         final ArrayAdapter<CharSequence> nAdapter =
                 ArrayAdapter.createFromResource(this,
-                                                R.array.notify_array,
-                                                android.R.layout.simple_spinner_item);
-
+                        R.array.notify_array,
+                        android.R.layout.simple_spinner_item);
         //下拉不拥挤
         nAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //开始适配
         notify.setAdapter(nAdapter);
-
-        //设置监听(Spinner列表项处理)
+        //设置监听(Spinner列表项处理)(匿名内层类)
         notify.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -69,6 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //-使用网格视图------------------------------------------------------------------------------
+
+        GridView grid = (GridView) findViewById(R.id.grid);
+        ArrayAdapter gAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, func);
+        grid.setAdapter(gAdapter);
+
+        //设置事件监听(实现接口方法)
+        grid.setOnItemClickListener(this);  // 关联程序顶部(implements)与底部(onItemClick)
     }
 
     @Override
@@ -117,5 +125,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    //ListView与GridView的事件处理方案(与implements AdapterView.OnItemClickListener关联)
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        switch(position) {
+            case 0: Toast.makeText(this, "case 0", Toast.LENGTH_SHORT).show(); break;
+            case 1: Toast.makeText(this, "case 1", Toast.LENGTH_SHORT).show(); break;
+            case 2: Toast.makeText(this, "case 2", Toast.LENGTH_SHORT).show(); break;
+            case 3: Toast.makeText(this, "case 3", Toast.LENGTH_SHORT).show(); break;
+            case 4: finish();
+        }
     }
 }
