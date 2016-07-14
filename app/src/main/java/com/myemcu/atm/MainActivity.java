@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int FUNC_LOGIN =1 ; // 登陆界面(LoginActivity)的功能常数
 
-    String[] func = {"余额查询","交易明细","最新消息","投资理财","退出"}; // ListView所用数组
+    String[] func = {"余额查询","交易明细","最新资讯","投资理财","退出"}; // ListView所用数组
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,39 @@ public class MainActivity extends AppCompatActivity {
         //-增加ListView--------------------------------------------------------------------------
         ListView list = (ListView) findViewById(R.id.list); // 获取对象
         //为其添加适配器                         主活动   SDK中提供的list_layout资源           数组
-        //即：将数组中的资源，以SDK中所提供的simple_list_item_1.xml文件的方式，适配到主活动
+        //即：将数组中的资源，以SDK中layout目录所提供的simple_list_item_1.xml文件的方式，适配到主活动
+        //C:\Users\Administrator\AppData\Local\Android\sdk\platforms\android-23\data\res\layout
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, func);
         list.setAdapter(adapter);   // 设置id为list的适配器
+
+        //-增加Spinner--------------------------------------------------------------------------
+        Spinner notify = (Spinner) findViewById(R.id.notify_spinner); // 获取对象
+
+        //若数组存放在Res(资源文件)中,则用这种方法来创建Adapter(即：从资源中创建)。
+        //要进行事件处理就要加Final
+        final ArrayAdapter<CharSequence> nAdapter =
+                ArrayAdapter.createFromResource(this,
+                                                R.array.notify_array,
+                                                android.R.layout.simple_spinner_item);
+
+        //下拉不拥挤
+        nAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //开始适配
+        notify.setAdapter(nAdapter);
+
+        //设置监听(Spinner列表项处理)
+        notify.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
+                Toast.makeText(MainActivity.this, nAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
