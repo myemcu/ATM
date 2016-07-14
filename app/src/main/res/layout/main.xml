@@ -14,5 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10pt"
-        android:text="我是主界面..."/>
+        android:text="我是主界面..."
+        android:textColor="#0000cd"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView3"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>
