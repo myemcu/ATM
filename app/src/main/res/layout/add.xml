@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="新增"
-        android:onClick="add"
+        android:onClick="add_Click"
         android:textSize="20sp"
         android:id="@+id/button"/>
 </LinearLayout>
