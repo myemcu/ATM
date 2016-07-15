@@ -218,9 +218,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 TextView text = (TextView) row.findViewById(R.id.item_text);
 
                 image.setImageResource(icons[position]);
+                image.setColorFilter(Color.BLUE);
+
                 text.setText(func[position]);
                 text.setTextSize(20);
-                text.setTextColor(Color.BLUE); // 系统自带的颜色类
+                text.setTextColor(Color.RED); // 系统自带的颜色类
 
             }
 
