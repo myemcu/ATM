@@ -172,7 +172,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                          break;
 
             case R.drawable.func_finance:// 投资理财
-                                         Toast.makeText(this, "case 3", Toast.LENGTH_SHORT).show();
+                                         // Toast.makeText(this, "case 3", Toast.LENGTH_SHORT).show();
+                                         // 由本页面跳到投资理财页面
+                                         startActivity(new Intent(this, FinanceActivity.class));
                                          break;
 
             case R.drawable.func_exit:   finish();  // 退出

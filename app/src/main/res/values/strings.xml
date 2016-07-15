@@ -7,4 +7,6 @@
     <string name="cancel">取消</string>
 
     <string name="userid_write">帐号存储</string>
+
+    <string name="title_activity_finance">投资理财</string>
 </resources>
