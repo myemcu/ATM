@@ -3,6 +3,8 @@
 package com.myemcu.atm;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static com.myemcu.atm.R.color.colorAccent;
 
 //主活动类继承AppCompatActivity并执行AdapterView.OnItemClickListener方法
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -215,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 image.setImageResource(icons[position]);
                 text.setText(func[position]);
+                text.setTextSize(20);
+                text.setTextColor(Color.BLUE); // 系统自带的颜色类
 
             }
 
