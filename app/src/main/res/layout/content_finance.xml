@@ -13,7 +13,45 @@
     tools:context="com.myemcu.atm.FinanceActivity"
     tools:showIn="@layout/finance">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编号"
+            android:layout_weight="1"
+            android:textSize="10pt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日期"
+            android:layout_weight="1"
+            android:textSize="10pt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="说明"
+            android:layout_weight="1"
+            android:textSize="10pt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金额"
+            android:layout_weight="1"
+            android:textSize="10pt"/>
+    </LinearLayout>
+
     <ListView
+        android:layout_marginTop="20pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/list"
