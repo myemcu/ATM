@@ -1,3 +1,7 @@
+// 说明：
+// expense.db中的expense为数据库名
+// .insert("exp",null,values);中的exp为数据表名
+
 package com.myemcu.atm;
 
 import android.content.ContentValues;
@@ -48,10 +52,11 @@ public class AddActivity extends AppCompatActivity {
         values.put("info",   info);
         values.put("amount", amount);
 
+        //                                           数据表名
         long id = helper.getWritableDatabase().insert("exp",null,values);   // 插入记录
 
         //Log.d("ADD",id+"");
 
-        Toast.makeText(this,"SQLite插入记录"+id,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "SQLite插入记录"+id, Toast.LENGTH_SHORT).show();
     }
 }

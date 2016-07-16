@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public static final int FUNC_LOGIN =1 ; // 登陆界面(LoginActivity)的功能常数
 
-    String[] func = {"余额查询","交易明细","最新资讯","投资理财","退出"}; // ListView所用数组
+    String[] func = {"余额查询","交易明细","最新资讯","日常开支","退出"}; // ListView所用数组
 
     int[] icons ={
             R.drawable.func_balance,    // 余额查询

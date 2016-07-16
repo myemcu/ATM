@@ -18,11 +18,11 @@ public class MyDBHelper extends SQLiteOpenHelper {
     //构建数据表(使用写数据库对象呼叫SQL方法来建表)
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
-                "CREATE TABLE main.exp"+
-                        "(_id INTEGER PRIMARY KEY NOT NULL,"+
-                        "cdate DATETIME NOT NULL,"+
-                        "info VARCHAR,"+
-                        "amount INTEGER)"
+                "CREATE TABLE main.exp"+                        // 数据表名exp
+                        "(_id INTEGER PRIMARY KEY NOT NULL,"+   // 主键
+                        "cdate DATETIME NOT NULL,"+             // 日期
+                        "info VARCHAR,"+                        // 信息
+                        "amount INTEGER)"                       // 金额
         );
     }
 
