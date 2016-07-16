@@ -1,3 +1,6 @@
+//使用SQLite的Singleton模式，能够确保同一时间只有一个MyDBHelper处于运行状态，从而避免存取数据库的"dead lock"
+//死锁问题，提高程序的健壮性。
+
 package com.myemcu.atm;
 
 import android.content.Context;
@@ -10,7 +13,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 // 新类继承后一般要点Alt+Enter进行Implement methods
 public class MyDBHelper extends SQLiteOpenHelper {
-    public MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+
+    private static MyDBHelper instance = null; // 新增一个封闭的static类变量
+
+    // 设计一个公开的getInstance()方法，以获取MyDBHelper对象
+    public static MyDBHelper getInstance(Context ctx) {
+        if (instance == null) {
+            instance =  new MyDBHelper(ctx, "expense.db", null ,1);
+        }
+        return instance;
+    }
+
+    private MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 

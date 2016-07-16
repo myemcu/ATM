@@ -29,7 +29,7 @@ public class AddActivity extends AppCompatActivity {
 
         //-创建SQLite数据库对象--------------------------------------------
         //当前活动,数据库名(自取),标准模式处理Cursor,当前版本
-        helper = new MyDBHelper(this, "expense.db", null, 1);
+        helper = MyDBHelper.getInstance(this);
     }
 
     private void findViews() {

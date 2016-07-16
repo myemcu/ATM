@@ -36,7 +36,10 @@ public class FinanceActivity extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.list);
 
         //产生MyDBHelper对象并查询exp表格
-        MyDBHelper helper = new MyDBHelper(this, "expense.db", null, 1);
+        //MyDBHelper helper = new MyDBHelper(this, "expense.db", null, 1);
+
+        MyDBHelper helper = MyDBHelper.getInstance(this);
+
         Cursor c = helper.getReadableDatabase().query("exp",null,null,null,null,null,null);
 
         //产生SimpleCursorAdapter对象(若数据来源为查询结果Cursor时,则使用SimpleCursorAdapter建立Adapter)
