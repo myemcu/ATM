@@ -1,9 +1,13 @@
 package com.myemcu.atm;
 
+import android.os.TransactionTooLargeException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +51,8 @@ public class TransActivity extends AppCompatActivity {
                 // 连接成功的回应处理
                 String json = response.body().string(); // 取得服务器端的回应字符串
                 Log.d("OKHTTP",json);                   // LogCat跟踪
-                parseJSON(json);                        // JSON解析
+                //parseJSON(json);                      // JSON解析(Android自带库)
+                parseGson(json);                        // JSON解析(第三方库GoogleGson)
             }
         });
     }
@@ -79,5 +84,17 @@ public class TransActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    private void parseGson(String json) {
+        Gson gson = new Gson(); // 产生Gson对象
+        ArrayList<Transcation> list = gson.fromJson(json, new  TypeToken<ArrayList<Transcation>>(){}.getType());
+        Log.d("JSON","GSON解析总数："+list.size());
+
+        //Log.d("JSON",list.get(0).getAccount()+"/"+list.get(0).getDate()+"/"+list.get(0).getAmount()+"/"+list.get(0).getType());
+
+        for (int i=0; i<list.size();i++) {
+            Log.d("JSON",list.get(i).getAccount()+"/"+list.get(i).getDate()+"/"+list.get(i).getAmount()+"/"+list.get(i).getType());
+        }
     }
 }
