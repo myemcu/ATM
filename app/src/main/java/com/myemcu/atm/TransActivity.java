@@ -3,8 +3,14 @@ package com.myemcu.atm;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;                // 呼叫
 import okhttp3.Callback;            // 回调
@@ -47,5 +53,31 @@ public class TransActivity extends AppCompatActivity {
     }
 
     private void parseJSON(String json) {
+
+        ArrayList<Transcation> trans = new ArrayList<>();   // 准备一个集合
+
+        try {
+                JSONArray array = new JSONArray(json);      // 产生json数组
+
+                for (int i=0; i<array.length(); i++) {      // 取出数组所有
+
+                    JSONObject obj = array.getJSONObject(i);// 取得索引值的json对象
+
+                    // 取得对应索引值的每个属性
+                    String account = obj.getString("account");
+                    String date = obj.getString("date");
+                    int amount = obj.getInt("amount");
+                    int type = obj.getInt("type");
+
+                    Log.d("JSON",account+"/"+date+"/"+amount+"/"+type);
+
+                    //Transcation t = new Transcation(account,date,amount,type); // 产生一笔记录
+                    //trans.add(t);   // 加入到集合
+                }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
