@@ -168,7 +168,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                          break;
 
             case R.drawable.func_history:// 交易明细
-                                         Toast.makeText(this, "case 1", Toast.LENGTH_SHORT).show();
+                                         startActivity(new Intent(this, TransActivity.class));
+                                         Toast.makeText(this, "JSON解析成功", Toast.LENGTH_SHORT).show();
                                          break;
 
             case R.drawable.func_news:  // 最新资讯
