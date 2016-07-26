@@ -58,7 +58,7 @@ public class TransActivity extends AppCompatActivity {
                 Log.d("OKHTTP",json);                   // LogCat跟踪
                 //parseJSON(json);                      // JSON解析(Android自带库)
                 //parseGson(json);                        // JSON解析(第三方库GoogleGson)
-                parseJackson(json);                   // JSON解析(测试未能解析)
+                parseJackson(json);                   // JSON解析
             }
         });
     }
@@ -104,7 +104,7 @@ public class TransActivity extends AppCompatActivity {
         }
     }
 
-    private void parseJackson(String json) { // 测试未能解析
+    private void parseJackson(String json) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {

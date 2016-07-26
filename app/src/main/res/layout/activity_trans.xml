@@ -10,9 +10,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.myemcu.atm.TransActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="帐户    日期      金额      类型"
+        android:textSize="12pt"
+        android:layout_weight="2"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="24pt"
         android:id="@+id/recycler"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"/>
