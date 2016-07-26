@@ -3,6 +3,8 @@ package com.myemcu.atm;
 import android.os.TransactionTooLargeException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -115,9 +117,27 @@ public class TransActivity extends AppCompatActivity {
              for (int i=0; i<list.size();i++) {
                  Log.d("JSON",list.get(i).getAccount()+"/"+list.get(i).getDate()+"/"+list.get(i).getAmount()+"/"+list.get(i).getType());
              }
+
+             runOnUiThread(new Runnable() {
+                 @Override
+                 public void run() {
+                     setupRecyclerView(list);
+                 }
+             });
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // 设计RecyclerView方法
+    private void setupRecyclerView(List<Transcation> list) {
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
+
+        TransactionAdapter adapter = new TransactionAdapter(list);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
