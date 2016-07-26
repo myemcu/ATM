@@ -11,6 +11,10 @@ public class Transcation {
     int     amount;     // 金额
     int     type;       // 类型
 
+    //Jackson解析JSON必备的无参建构
+    public Transcation() {
+
+    }
 
     // 通过对public class中的Transcation点Alt+Insert点Constructor生成
     public Transcation(String account, String date, int amount, int type) {

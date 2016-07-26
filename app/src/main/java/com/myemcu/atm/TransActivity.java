@@ -9,12 +9,15 @@ import android.widget.ArrayAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;                // 呼叫
 import okhttp3.Callback;            // 回调
@@ -52,12 +55,13 @@ public class TransActivity extends AppCompatActivity {
                 String json = response.body().string(); // 取得服务器端的回应字符串
                 Log.d("OKHTTP",json);                   // LogCat跟踪
                 //parseJSON(json);                      // JSON解析(Android自带库)
-                parseGson(json);                        // JSON解析(第三方库GoogleGson)
+                //parseGson(json);                        // JSON解析(第三方库GoogleGson)
+                parseJackson(json);                   // JSON解析(测试未能解析)
             }
         });
     }
 
-    private void parseJSON(String json) {
+    private void parseJSON(String json) {                   // Android自带JSON解析
 
         ArrayList<Transcation> trans = new ArrayList<>();   // 准备一个集合
 
@@ -86,7 +90,7 @@ public class TransActivity extends AppCompatActivity {
 
     }
 
-    private void parseGson(String json) {
+    private void parseGson(String json) {                   // GoogleGson解析(第三方库)
         Gson gson = new Gson(); // 产生Gson对象
         ArrayList<Transcation> list = gson.fromJson(json, new  TypeToken<ArrayList<Transcation>>(){}.getType());
         Log.d("JSON","GSON解析总数："+list.size());
@@ -95,6 +99,25 @@ public class TransActivity extends AppCompatActivity {
 
         for (int i=0; i<list.size();i++) {
             Log.d("JSON",list.get(i).getAccount()+"/"+list.get(i).getDate()+"/"+list.get(i).getAmount()+"/"+list.get(i).getType());
+        }
+    }
+
+    private void parseJackson(String json) { // 测试未能解析
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+             final ArrayList<Transcation> list = objectMapper.readValue(json, new TypeReference<List<Transcation>>(){});
+
+             Log.d("JSON","JackSon方式解析总数："+list.size());
+
+             //Log.d("JSON",list.get(0).getAccount()+"/"+list.get(0).getDate()+"/"+list.get(0).getAmount()+"/"+list.get(0).getType());
+
+             for (int i=0; i<list.size();i++) {
+                 Log.d("JSON",list.get(i).getAccount()+"/"+list.get(i).getDate()+"/"+list.get(i).getAmount()+"/"+list.get(i).getType());
+             }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
